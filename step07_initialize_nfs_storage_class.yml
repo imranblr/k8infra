@@ -1,0 +1,30 @@
+- hosts: master
+  become: yes
+  become_user: ubuntu
+
+  tasks:
+
+    - name: Copying NFS Config files..
+      copy:
+        src: /home/sysadmin/ansible/kubernetes/nfs-storage
+        dest: ~/
+
+    - name: Creating NFS RBACs
+      shell: kubectl apply -f step01_nfs-rbac.yaml 
+      args:
+        chdir: ~/nfs-storage
+
+    - name: Creating NFS Client Provisioner
+      shell: kubectl apply -f step02_nfs-client-provisioner.yaml
+      args:
+        chdir: ~/nfs-storage
+
+#    - name: Scaling up NFS Storage Class provisioner
+#      shell: kubectl apply -f nfs-client-provisioner-values.yaml 
+#      args:
+#        chdir: ~/nfs-storage
+
+    - name: Creating NFS Storage Class
+      shell: kubectl apply -f step03_nfs-storage-class.yaml
+      args:
+        chdir: ~/nfs-storage

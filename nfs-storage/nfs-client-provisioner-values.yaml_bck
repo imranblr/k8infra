@@ -1,0 +1,9 @@
+replicaCount: 4
+
+storageClass:
+  name: nfs-storage
+  reclaimPolicy: Retain
+  defaultClass: true
+  provisionerName: nfs-provisioner
+
+

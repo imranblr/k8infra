@@ -1,0 +1,16 @@
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    app: runner
+  name: runner-service
+spec:
+  selector:
+     app: runner
+  type: NodePort
+  ports:
+    - name: http
+      port: 8093
+      protocol: TCP
+      targetPort: 8093
+

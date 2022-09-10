@@ -1,0 +1,18 @@
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: runner-config
+  labels:
+    name: runner-config
+spec:
+  persistentVolumeReclaimPolicy: Retain
+  storageClassName: nfs-storage
+  capacity:
+    storage: 20Gi
+  volumeMode: Filesystem
+  accessModes:
+  - ReadWriteMany
+  nfs:
+    server: 192.168.100.13
+    path: "/nfs-share/runner-config"
+

@@ -1,0 +1,44 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: manual-nfs-provisioner
+  name: manual-nfs-provisioner 
+  namespace: default
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: manual-nfs-provisioner
+  strategy:
+    type: Recreate
+  template:
+    metadata:
+      labels:
+        app: manual-nfs-provisioner 
+    spec:
+      serviceAccountName: nfs-svc-acc
+      containers:
+        - name: manual-nfs-provisioner 
+          image: quay.io/external_storage/nfs-client-provisioner:latest 
+
+          volumeMounts:
+            - name: nfs-root
+              mountPath: /persistentvolumes
+
+          env:
+            - name: PROVISIONER_NAME
+              value: manual-nfs-provisioner
+            - name: NFS_SERVER
+              value: 192.168.100.13 
+            - name: NFS_PATH
+              value: /nfs-share/
+
+      volumes:
+        - name: nfs-root
+          nfs:
+            server: 192.168.100.13 
+            path: /nfs-share/
+
+
+

@@ -1,0 +1,9 @@
+#!/bin/bash
+
+if [ -d /nfs-share ]; then echo folder exists; else  mkdir /nfs-share; fi
+grep nfs /etc/fstab
+if [ $? == 0 ]; then continure; else echo '192.168.100.13:/nfs-share /nfs-share nfs auto,nofail,noatime,nolock,intr,tcp 0 0' >> /etc/fstab; fi
+
+mount -a
+df -h
+exit

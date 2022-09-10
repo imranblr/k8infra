@@ -1,0 +1,41 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: runner
+  name: runner-deployment
+spec:
+  replicas: 2
+  revisionHistoryLimit: 10
+  selector:
+    matchLabels:
+      app: runner
+  template:
+    metadata:
+      labels:
+        app: runner
+    spec:
+      hostAliases:
+      - ip: "192.168.100.12"
+        hostnames:
+        - "gitlab.example.com"
+      containers:
+        - name: runner
+          image: gitlab/gitlab-runner:latest
+          ports:
+            - containerPort: 8093
+          volumeMounts:
+            - name: local-path
+              mountPath: /var/run/docker.sock
+            - name: from-nfs-runner-config
+              mountPath: /etc/gitlab-runner
+      volumes:
+        - name: local-path
+          hostPath:
+            path: /var/run/docker.sock
+        - name: from-nfs-runner-config
+          persistentVolumeClaim:
+            claimName: runner-config
+#      imagePullSecrets:
+#        - name: gitlab-reg-secret
+

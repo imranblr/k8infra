@@ -1,0 +1,35 @@
+- hosts: master
+  become: yes
+  become_user: ubuntu
+
+  tasks:
+    - name: Copying runner files..
+      copy:
+        src: /home/sysadmin/ansible/kubernetes/runner
+        dest: ~/
+
+    - name: Creating Persistent Volume
+      shell: kubectl apply -f step01_pv_runner_deployment.yml
+      args:
+        chdir: ~/runner
+
+    - name: Creating Persistent Volume Claim
+      shell: kubectl apply -f step02_pvc_runner_deployment.yml
+      args:
+        chdir: ~/runner
+
+#    - name: Deploying hostaliases pod for runner..
+#      shell: kubectl apply -f hostaliases_runner_pod.yml
+#      args:
+#        chdir: ~/runner
+
+    - name: Deploying runner..
+      shell: kubectl apply -f step03_runner_deployment.yml
+      args:
+        chdir: ~/runner
+
+    - name: Creating Service for runner..
+      shell: kubectl apply -f step04_svc_runner_deployment.yml
+      args:
+        chdir: ~/runner
+

@@ -1,0 +1,15 @@
+- hosts: master
+  become: yes
+  become_user: ubuntu
+  tasks:
+    - name: Installing nginx deployement 
+      shell: kubectl create deployment nginx --image=nginx >> nginx_deployment.txt
+      args:
+        chdir: $HOME
+        creates: nginx_deployment.txt
+
+    - name: Installing nginx deployement 
+      shell:  kubectl expose deploy nginx --port 80 --target-port 80 --type NodePort >> nginx_deployment1.txt
+      args:
+        chdir: $HOME
+        creates: nginx_deployment1.txt

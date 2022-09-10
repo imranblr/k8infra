@@ -1,0 +1,7 @@
+- hosts: all
+  become: yes
+  tasks:
+   - name: mount nfs share
+     shell:
+       warn: no
+       cmd: rm -rf ~/nfs* 
