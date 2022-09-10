@@ -1,0 +1,92 @@
+    1  passwd 
+    2  exit
+    3  service iptables status
+    4  service iptable status
+    5  ps -ef| grep -i iptables
+    6  ps -ef| grep -i iptabl
+    7  ps -ef| grep -i ip
+    8  ps -ef| grep -i 
+    9  sudo systemctls status firewalld
+   10  ps -ef| grep -i fire
+   11  sudo systemctl status netfilter-persistent
+   12  iptables -L
+   13  history 
+   14  exit
+   15  kubectl --help
+   16  kubectl nodes
+   17  kubectl get pods
+   18  kubectl version
+   19  kubectl logs
+   20  kubectl get pods
+   21  kubectl get nodes
+   22  reboot
+   23  kubectl get nodes
+   24  kubectl get nodes --client=true
+   25  kubectl version --client=true
+   26  kubectl version --server=true
+   27  kubectl get nodes --server=true
+   28  ps -ef|grep -i kub
+   29  netstat -antp|grep -i listen
+   30  clear
+   31  ls
+   32  ls /root/
+   33  cat /root/cluster_initialized.txt 
+   34  cat /etc/kubernetes/kubelet.conf 
+   35  clear
+   36  cat /etc/kubernetes/admin.conf 
+   37  clear
+   38  docker ps -a
+   39  kubectl get services
+   40  sudo ubuntu
+   41  sudo su - ubuntu
+   42  kubectl cluster-info
+   43  exit
+   44  su - ubuntu
+   45  netstat -antp|grep -i listen
+   46  history | grep kube/config
+   47  find / -name 'config' | grep kube
+   48  cat /home/ubuntu/.kube/config
+   49  cat /home/ubuntu/.kube/config > kube_config
+   50  history |grep -i token
+   51  sudo ubuntu
+   52  su ubuntu
+   53  iptables -nvL
+   54  iptables-restore < /etc/open-iptables.conf 
+   55  iptables -nvL
+   56  iptables-restore < /etc/iptables.conf 
+   57  iptables -nvL
+   58  iptables-save > /etc/open-iptables.conf 
+   59  iptables -nvL
+   60  iptables-restore < /etc/open-iptables.conf 
+   61  iptables -nvL
+   62  2094  sudo iptables -P INPUT ACCEPT
+   63  iptables -P FORWARD ACCEPT
+   64  o iptables -t nat -F
+   65  iptables -t mangle -F
+   66  iptables -F
+   67  iptables -X
+   68  iptables save
+   69  iptables-save .
+   70  iptables-save | tee /etc/open-iptables.conf .
+   71  o iptables -P FORWARD ACCEPT
+   72  iptables -P OUTPUT ACCEPT
+   73  iptables -t nat -F
+   74  iptables -t mangle -F
+   75  iptables -F
+   76  iptables -X
+   77  kubectl get pod
+   78  exit
+   79  ls
+   80  ll
+   81  cat cluster_initialized.txt 
+   82  mkdir k8master.bck
+   83  cd k8master.bck/
+   84  tar -zcvf sysadmin.tz /home/sysadmin
+   85  ll /home/
+   86  ll /home/ubuntu/
+   87  tar -zcvf ubuntu.tz /home/ubuntu
+   88  ll
+   89  tar -zcvf kubernetes.tz /etc/kubernetes
+   90  history 
+   91  ll
+   92  history > history

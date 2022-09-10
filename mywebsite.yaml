@@ -1,0 +1,40 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: mywebsite
+  name: mywebsite-deployment
+spec:
+  replicas: 2
+  revisionHistoryLimit: 10
+  selector:
+    matchLabels:
+      app: mywebsite
+  template:
+    metadata:
+      labels:
+        app: mywebsite
+    spec:
+      containers:
+        - name: mywebsite
+          image: gitlab.example.com/root/nginx-kubernetes-deployment:master_a1656c9c6fc850bf5376a7cfbd12e7cbca064bbf
+          ports:
+            - containerPort: 80
+      imagePullSecrets:
+        - name: gitlab-reg-secret
+---
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    app: mywebsite
+  name: mywebsite-service
+spec:
+  selector:
+     app: mywebsite
+  type: NodePort
+  ports:
+    - name: http
+      port: 80
+      protocol: TCP
+      targetPort: 80
