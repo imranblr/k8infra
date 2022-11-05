@@ -18,11 +18,13 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   config.vm.define "ansible" do |ansible|
     ansible.vm.hostname = "ansible"
     ansible.vm.network "private_network", ip: "192.168.10.13"
+    config.vm.provision "file", source: "./ansible", destination: "~/"
   end
   
   config.vm.define "master" do |master|
     master.vm.hostname = "master"
     master.vm.network "private_network", ip: "192.168.10.14"
+    config.vm.provision "file", source: "./k8master", destination: "~/"
   end
 
   config.vm.define "worker1" do |worker1|
